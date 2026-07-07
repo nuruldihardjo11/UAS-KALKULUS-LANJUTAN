@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Fungsi Kuadrat</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            options: { enableMenu: false },
+            chtml: { scale: 0.95, mtextInheritFont: true, matchFontHeight: false }
+        };
+    </script>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <h1 class="header-title">📐 Fungsi Kuadrat</h1>
+            <button class="mobile-menu-btn" onclick="document.getElementById('desktop-nav').classList.toggle('open')">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+            <nav class="desktop-nav" id="desktop-nav">
+                <a href="index.html"> Beranda</a>
+                <a href="materi.html"> Materi</a>
+                <a href="rumus.html"> Rumus</a>
+                <a href="soal.html" class="active"> Latihan Soal</a>
+                <a href="referensi.html"> Referensi</a>
+                <a href="profil.html">👤 Profil</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-content">
+        <div class="page-container">
+            <div class="page-header">
+                <h1> Latihan Soal Fungsi Kuadrat</h1>
+                <p>Pilih jawaban Anda, lalu klik "Cek Jawaban" untuk melihat skor, status benar/salah, dan pembahasan setiap soal.</p>
+            </div>
+
+            <div class="content-section">
+                <div id="container-soal"></div>
+
+                <div class="action-bar">
+                    <button type="button" id="btn-submit" class="btn btn-primary" onclick="cekJawaban()">
+                        ✅ Cek Jawaban
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="resetJawaban()">
+                        🔄 Ulangi Soal
+                    </button>
+                    <span class="progress-info" id="info-terjawab">0 dari 50 soal terjawab</span>
+                </div>
+
+                <div id="result-container" class="hidden"></div>
+            </div>
+
+            <div class="page-nav">
+                <a href="rumus.html" class="nav-btn">← Rumus & Pengayaan</a>
+                <a href="referensi.html" class="nav-btn primary">Referensi →</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; Belajar Fungsi Kuadrat.</p>
+        <p class="footer-credit">Nurul Rahma A. Diharjo · 202557201030 · Sistem Informasi · Fakultas Teknik · Universitas Musamus Merauke 2026</p>
+    </footer>
+
+    <script>
+        const daftarSoal = [
+            { teks: "Grafik fungsi $f(x) = mx^{2} + (2m-1)x + m + 3$ berada seluruhnya di atas sumbu X. Interval nilai $m$ yang memenuhi adalah $\\dots$", opsi: ["A. $m < -\\frac{1}{16}$", "B. $m > -\\frac{1}{16}$", "C. $m > 0$", "D. $m < \\frac{1}{16}$", "E. $m > \\frac{1}{16}$"], kunci: 4, pembahasan: "Syarat <strong>definit positif</strong>: $a > 0$ dan $D < 0$.<br>• $a = m > 0$.<br>• $D = (2m-1)^2 - 4m(m+3) = -16m + 1 < 0 \\implies m > \\dfrac{1}{16}$.<br>Irisan kedua syarat: <strong>$m > \\dfrac{1}{16}$</strong>." },
+            { teks: "Jika titik $P(-3,5)$ dan $Q(7,5)$ terletak pada grafik fungsi $f(x) = p(x-q)^{2} + r$, maka nilai $q = \\dots$", opsi: ["A. $1$", "B. $2$", "C. $3$", "D. $4$", "E. $5$"], kunci: 1, pembahasan: "Karena $f(-3) = f(7) = 5$, kedua titik simetris terhadap sumbu simetri $x = q$.<br>$q = \\dfrac{-3 + 7}{2} = \\mathbf{2}$." },
+            { teks: "Jika grafik fungsi $y = x^2 - (9 + a)x + 9a$ diperoleh dari grafik fungsi $y = x^2 - 2x - 3$ melalui pencerminan terhadap garis $x = 4$, maka nilai $a = \\dots$", opsi: ["A. $7$", "B. $5$", "C. $3$", "D. $-5$", "E. $-7$"], kunci: 1, pembahasan: "Pencerminan terhadap $x = 4$: ganti $x$ dengan $8 - x$.<br>$y = (8-x)^2 - 2(8-x) - 3 = x^2 - 14x + 45$.<br>Samakan: $9 + a = 14 \\implies \\mathbf{a = 5}$." },
+            { teks: "Koordinat titik potong grafik fungsi kuadrat $y = 3x^2 - x - 2$ dengan sumbu X dan sumbu Y adalah $\\dots$", opsi: ["A. $(-1, 0), \\left(\\frac{2}{3}, 0\\right),$ dan $(0, 2)$", "B. $\\left(-\\frac{2}{3}, 0\\right), (1, 0),$ dan $(0, -2)$", "C. $\\left(-\\frac{3}{2}, 0\\right), (1, 0),$ dan $\\left(0, -\\frac{2}{3}\\right)$", "D. $\\left(-\\frac{3}{2}, 0\\right), (-1, 0),$ dan $(0, -1)$", "E. $\\left(\\frac{3}{2}, 0\\right), (1, 0),$ dan $(0, 3)$"], kunci: 1, pembahasan: "Potong sumbu X: $3x^2 - x - 2 = 0 \\implies (3x+2)(x-1) = 0 \\implies x = -\\dfrac{2}{3}$ atau $x = 1$.<br>Potong sumbu Y ($x = 0$): $y = -2$.<br>Titik potong: $\\mathbf{\\left(-\\dfrac{2}{3}, 0\\right),\\; (1, 0),\\; (0, -2)}$." },
+            { teks: "Fungsi kuadrat $f(x) = x^2 + 2px + p$ mempunyai nilai minimum $-p$ dengan $p \\neq 0$. Jika sumbu simetri kurva $f$ adalah $x = a$, maka nilai $a + f(a) = \\dots$", opsi: ["A. $6$", "B. $4$", "C. $-4$", "D. $-5$", "E. $-6$"], kunci: 4, pembahasan: "Sumbu simetri $a = -p$. Nilai minimum $f(-p) = -p$.<br>$f(-p) = -p^2 + p = -p \\implies p^2 - 2p = 0 \\implies p = 2$.<br>Maka $a = -2$, $f(-2) = -2$.<br>$a + f(a) = -2 + (-2) = \\mathbf{-6}$." },
+            { teks: "Jika grafik fungsi kuadrat $f(x) = ax^2 + bx + c$ dengan titik puncak $(5, -4)$ memotong sumbu X positif dan sumbu X negatif, maka pernyataan yang benar adalah $\\dots$", opsi: ["A. $a - c > 0$", "B. $a + c < 0$", "C. $a + c = 0$", "D. $a + c > 0$", "E. $a - c < 0$"], kunci: 1, pembahasan: "Memotong sumbu X positif dan negatif $\\implies x_1 x_2 = \\dfrac{c}{a} < 0$.<br>Puncak $(5, -4)$ dengan $y_p < 0$ dan memotong sumbu X di dua sisi $\\implies a > 0$, $c < 0$.<br>Jadi $a > 0$ dan $c < 0 \\implies \\mathbf{a + c < 0}$." },
+            { teks: "Jika fungsi kuadrat $f(x) = ax^2 + (a+6)x + 3$ puncaknya berordinat $5$, maka nilai $a = \\dots$", opsi: ["A. $-18$ dan $-2$", "B. $-16$ dan $-4$", "C. $-14$ dan $-2$", "D. $-12$ dan $-8$", "E. $-12$ dan $-6$"], kunci: 0, pembahasan: "Ordinat puncak: $y_p = -\\dfrac{D}{4a} = 5 \\implies D = -20a$.<br>$D = (a+6)^2 - 12a = a^2 + 36$.<br>$a^2 + 36 = -20a \\implies a^2 + 20a + 36 = 0 \\implies (a+18)(a+2) = 0$.<br>Jadi $a = -18$ atau $a = -2$. Sesuai pilihan <strong>A</strong>." },
+            { teks: "Rumus fungsi kuadrat yang memotong sumbu X di titik $(2,0)$ dan $(-3,0)$ serta melalui titik $(4,-28)$ adalah $\\dots$", opsi: ["A. $y = -2x^2 - 2x + 12$", "B. $y = -2x^2 + 2x + 12$", "C. $y = 2x^2 - 2x - 12$", "D. $y = 2x^2 + 2x - 12$", "E. $y = -x^2 - x + 6$"], kunci: 0, pembahasan: "$y = a(x-2)(x+3)$. Substitusi $(4, -28)$:<br>$-28 = a \\cdot 2 \\cdot 7 = 14a \\implies a = -2$.<br>$y = -2(x^2 + x - 6) = \\mathbf{-2x^2 - 2x + 12}$." },
+            { teks: "Sumbu simetri grafik $f(x) = ax^2 + bx + c$ adalah $x = 1$. Jika $f(0) = 0$ dan $f(4) = -16$, maka nilai $b - a$ adalah $\\dots$", opsi: ["A. $6$", "B. $5$", "C. $4$", "D. $3$", "E. $2$"], kunci: 1, pembahasan: "$x_p = 1 \\implies b = -2a$.<br>$f(0) = 0 \\implies c = 0$.<br>$f(4) = -16 \\implies 16a + 4(-2a) = -16 \\implies 8a = -16 \\implies a = -2$.<br>$b = 4$. $b - a = 4 - (-2) = \\mathbf{5}$." },
+            { teks: "Titik $(a, b)$ terletak pada grafik $y = bx^2 + (1 - b^2)x - 56$. Jika $a - b = 7$, maka nilai $ab$ adalah $\\dots$", opsi: ["A. $7$", "B. $5$", "C. $1$", "D. $-1$", "E. $-5$"], kunci: 3, pembahasan: "Substitusi $x = a, y = b$ dengan $a = b + 7$.<br>Setelah perhitungan: $b = -1, a = 6$.<br>Maka $ab = 6 \\cdot (-1) = \\mathbf{-1}$." },
+            { teks: "Grafik fungsi kuadrat $y = (x - 2a)^2 + 3b$ mempunyai nilai minimum $21$ dan memotong sumbu Y di titik yang berordinat $25$. Nilai $a + b$ adalah $\\dots$", opsi: ["A. $8$ atau $-8$", "B. $8$ atau $6$", "C. $-8$ atau $6$", "D. $-8$ atau $-6$", "E. $6$ atau $-6$"], kunci: 1, pembahasan: "Nilai minimum: $3b = 21 \\implies b = 7$.<br>Potong sumbu Y: $4a^2 + 21 = 25 \\implies a^2 = 1 \\implies a = \\pm 1$.<br>$a + b = 8$ atau $6$." },
+            { teks: "Jika fungsi kuadrat $y = ax^2 + 6x + (a + 1)$ mempunyai sumbu simetri $x = 3$, maka nilai maksimum fungsi itu adalah $\\dots$", opsi: ["A. $1$", "B. $3$", "C. $5$", "D. $9$", "E. $18$"], kunci: 3, pembahasan: "$x_p = -\\dfrac{6}{2a} = 3 \\implies a = -1$.<br>$y = -x^2 + 6x$.<br>$y_p = f(3) = -9 + 18 = \\mathbf{9}$." },
+            { teks: "Jika grafik fungsi $y = x^2 + 2mx + m$ berada seluruhnya di atas grafik $y = mx^2 + 2x$, maka batasan nilai $m$ adalah $\\dots$", opsi: ["A. $m < 1$", "B. $m < \\frac{1}{2}$", "C. $\\frac{1}{2} < m < 1$", "D. $1 < m < 2$", "E. $m > 1$"], kunci: 2, pembahasan: "$(1-m)x^2 + (2m-2)x + m > 0$ untuk semua $x$.<br>Syarat: $m < 1$ dan $D < 0$.<br>$D = 8m^2 - 12m + 4 < 0 \\implies (2m-1)(m-1) < 0$.<br>Irisan: $\\mathbf{\\dfrac{1}{2} < m < 1}$." },
+            { teks: "Jika puncak parabola $y = x^2 - (a + 1)x + (2a + 4)$ terletak pada garis $y = 3x$, maka nilai $a = \\dots$", opsi: ["A. $\\pm 5$", "B. $\\pm 4$", "C. $\\pm 3$", "D. $\\pm 2$", "E. $\\pm 1$"], kunci: 2, pembahasan: "$x_p = \\dfrac{a+1}{2}$, $D = a^2 - 6a - 15$.<br>$y_p = 3x_p \\implies -(a^2 - 6a - 15) = 6(a+1)$.<br>$-a^2 + 6a + 15 = 6a + 6 \\implies a^2 = 9 \\implies \\mathbf{a = \\pm 3}$." },
+            { teks: "Garis $g$ menyinggung parabola $y = x^2 - 3x + 1$ di titik $P$. Jika absis titik $P$ adalah $x_p = 3$, maka persamaan garis $g$ adalah $\\dots$", opsi: ["A. $2x - y + 8 = 0$", "B. $2x + y + 8 = 0$", "C. $3x + y + 8 = 0$", "D. $3x - y + 8 = 0$", "E. $3x - y - 8 = 0$"], kunci: 4, pembahasan: "Gradien $m = 2x - 3$. Di $x = 3$: $m = 3$.<br>$y_p = 1$. Titik singgung $(3, 1)$.<br>$y - 1 = 3(x - 3) \\implies y = 3x - 8 \\implies \\mathbf{3x - y - 8 = 0}$." },
+            { teks: "Fungsi kuadrat $y = ax^2 + x + a$ definit negatif untuk konstanta $a$ yang memenuhi $\\dots$", opsi: ["A. $a < -\\frac{1}{2}$ atau $a > \\frac{1}{2}$", "B. $-\\frac{1}{2} < a < \\frac{1}{2}$", "C. $0 < a < \\frac{1}{2}$", "D. $a < 0$", "E. $a < -\\frac{1}{2}$"], kunci: 4, pembahasan: "Definit negatif: $a < 0$ dan $D < 0$.<br>$D = 1 - 4a^2 < 0 \\implies a^2 > \\dfrac{1}{4}$.<br>Irisan dengan $a < 0$: <strong>$a < -\\dfrac{1}{2}$</strong>." },
+            { teks: "Jika kurva $y = (m - 2)x^2 - mx + 5$ membuka ke atas dan dipotong oleh garis $y = mx - 4$, maka batasan nilai $m$ adalah $\\dots$", opsi: ["A. $2 \\leq m \\leq 6$", "B. $2 \\leq m \\leq 3$", "C. $m < 2$ atau $m \\geq 6$", "D. $2 < m \\leq 3$ atau $m \\geq 6$", "E. $m < 2$ atau $3 \\leq m \\leq 6$"], kunci: 3, pembahasan: "Membuka ke atas: $m > 2$.<br>Dipotong: $D \\geq 0 \\implies (m-3)(m-6) \\geq 0 \\implies m \\leq 3$ atau $m \\geq 6$.<br>Irisan: $\\mathbf{2 < m \\leq 3 \\text{ atau } m \\geq 6}$." },
+            { teks: "Jika parabola $y = ax^2 - (a + 3)x + a$ menyinggung sumbu X dan terbuka ke bawah, maka nilai $a = \\dots$", opsi: ["A. $-1$ dan $3$", "B. $1$ dan $-3$", "C. $-1$", "D. $3$", "E. $-3$"], kunci: 2, pembahasan: "$D = 0 \\implies -3a^2 + 6a + 9 = 0 \\implies (a-3)(a+1) = 0$.<br>$a = 3$ atau $a = -1$. Terbuka ke bawah: $a < 0 \\implies \\mathbf{a = -1}$." },
+            { teks: "Absis titik balik grafik fungsi $y = px^2 + (p-3)x + 2$ adalah $p$. Nilai $p = \\dots$", opsi: ["A. $-3$", "B. $-\\frac{3}{2}$", "C. $-1$", "D. $\\frac{2}{3}$", "E. $3$"], kunci: 1, pembahasan: "$x_p = -\\dfrac{p-3}{2p} = p \\implies 2p^2 + p - 3 = 0$.<br>$(2p+3)(p-1) = 0 \\implies p = -\\dfrac{3}{2}$ atau $p = 1$.<br>Jawaban: $\\mathbf{-\\dfrac{3}{2}}$." },
+            { teks: "Diketahui $b$ merupakan suatu bilangan bulat dan $p$ merupakan suatu bilangan prima. Jika grafik $y = x^2 + bx + p$ memotong sumbu X negatif di dua titik berbeda, maka nilai $b - p$ adalah $\\dots$", opsi: ["A. $-2$", "B. $-1$", "C. $0$", "D. $1$", "E. $2$"], kunci: 0, pembahasan: "Kedua akar negatif: $b > 0$, $p > 0$.<br>$D = b^2 - 4p > 0 \\implies b^2 > 4p$.<br>Dengan analisis bilangan bulat dan prima: $\\mathbf{-2}$." },
+            { teks: "Fungsi kuadrat yang grafiknya melalui titik $(-1, 2)$ dan titik tertingginya sama dengan titik terendah dari grafik $f(x) = x^2 + 4x + 7$ adalah $\\dots$", opsi: ["A. $y = -x^2 + 4x + 7$", "B. $y = -x^2 - 4x - 1$", "C. $y = -x^2 + 4x + 1$", "D. $y = -x^2 + 4x - 1$", "E. $y = -x^2 + 4x - 7$"], kunci: 1, pembahasan: "Puncak $f(x)$: $(-2, 3)$.<br>$y = a(x+2)^2 + 3$ dengan $a < 0$.<br>$2 = a + 3 \\implies a = -1$.<br>$y = \\mathbf{-x^2 - 4x - 1}$." },
+            { teks: "Jika grafik fungsi kuadrat $f(x) = ax^2 + bx + c$ mempunyai titik puncak $(8, 4)$ dan memotong sumbu X negatif, maka pernyataan yang benar adalah $\\dots$", opsi: ["A. $a > 0, b > 0, c > 0$", "B. $a < 0, b < 0, c > 0$", "C. $a < 0, b > 0, c < 0$", "D. $a > 0, b > 0, c < 0$", "E. $a < 0, b > 0, c > 0$"], kunci: 4, pembahasan: "Puncak $y_p = 4 > 0$ dan memotong sumbu X negatif $\\implies a < 0$.<br>$b = -16a > 0$, $c > 0$.<br>Jadi <strong>$a < 0,\\; b > 0,\\; c > 0$</strong>." },
+            { teks: "Fungsi kuadrat $y = f(x)$ yang grafiknya melalui titik $(2, 5)$ dan $(7, 40)$, serta mempunyai sumbu simetri $x = 1$, mempunyai nilai ekstrem $\\dots$", opsi: ["A. Minimum $2$", "B. Minimum $3$", "C. Minimum $4$", "D. Maksimum $3$", "E. Maksimum $4$"], kunci: 2, pembahasan: "$y = a(x-1)^2 + k$.<br>$a + k = 5$, $36a + k = 40 \\implies a = 1, k = 4$.<br>$a > 0 \\implies$ <strong>minimum $4$</strong>." },
+            { teks: "Diketahui nilai minimum fungsi kuadrat $y = x^2 + bx + c$ adalah $\\left(\\frac{5}{2}, -\\frac{1}{4}\\right)$. Jika grafik fungsi tersebut melalui titik $(p, 0)$ dan $(q, 0)$, maka nilai dari $p^2q + pq^2$ adalah $\\dots$", opsi: ["A. $-30$", "B. $-11$", "C. $11$", "D. $25$", "E. $30$"], kunci: 4, pembahasan: "$b = -5$, $c = 6$.<br>$p^2q + pq^2 = pq(p+q) = 6 \\cdot 5 = \\mathbf{30}$." },
+            { teks: "Jika $(p, q)$ merupakan titik puncak grafik fungsi $f(x) = ax^2 + 2ax + a + 1$, dengan $f(a) = 19$, maka nilai dari $p + 2q + 3a = \\dots$", opsi: ["A. $7$", "B. $6$", "C. $0$", "D. $-1$", "E. $-2$"], kunci: 0, pembahasan: "$p = -1$, $q = 1$, $a = 2$.<br>$p + 2q + 3a = -1 + 2 + 6 = \\mathbf{7}$." },
+            { teks: "Koordinat titik balik grafik fungsi kuadrat $f(x) = 2x^{2} - 4x + 5$ adalah $\\dots$", opsi: ["A. $(1,3)$", "B. $(1,5)$", "C. $(1,7)$", "D. $(2,5)$", "E. $(2,7)$"], kunci: 0, pembahasan: "$x_p = 1$, $y_p = 2 - 4 + 5 = 3$.<br>Titik balik: $\\mathbf{(1, 3)}$." },
+            { teks: "Koordinat titik puncak grafik fungsi kuadrat $y = 2x^{2} + 2kx + k + 5$ adalah $(m, m)$. Nilai $k + m = \\dots$", opsi: ["A. $1$ atau $\\frac{7}{2}$", "B. $-1$ atau $\\frac{5}{2}$", "C. $1$ atau $-\\frac{5}{2}$", "D. $1$ atau $-\\frac{7}{2}$", "E. $1$ atau $\\frac{5}{2}$"], kunci: 1, pembahasan: "$k = -2m$, $2m^2 + 3m - 5 = 0 \\implies m = 1$ atau $m = -\\dfrac{5}{2}$.<br>$k + m = -1$ atau $\\dfrac{5}{2}$." },
+            { teks: "Agar grafik fungsi $f(x) = (p+6)x^{2} + px + 2$ memotong sumbu X di dua titik berbeda di sebelah kanan titik asal $O(0,0)$, maka nilai $p$ haruslah $\\dots$", opsi: ["A. $-6 < p < -4$ atau $p > 12$", "B. $-4 < p < 0$", "C. $p < 0$", "D. $-6 < p < 0$", "E. $-6 < p < -4$"], kunci: 4, pembahasan: "$D > 0 \\implies p < -4$ atau $p > 12$.<br>$x_1 + x_2 > 0 \\implies -6 < p < 0$.<br>$x_1 x_2 > 0 \\implies p > -6$.<br>Irisan: $\\mathbf{-6 < p < -4}$." },
+            { teks: "Fungsi kuadrat yang memiliki nilai minimum $2$ untuk $x = 1$ dan mempunyai nilai $3$ untuk $x = 2$ adalah $\\dots$", opsi: ["A. $y = x^{2} - 2x + 1$", "B. $y = x^{2} - 2x + 3$", "C. $y = x^{2} + 2x - 1$", "D. $y = x^{2} + 2x + 1$", "E. $y = x^{2} + 2x + 3$"], kunci: 1, pembahasan: "$y = a(x-1)^2 + 2$. $f(2) = 3 \\implies a = 1$.<br>$y = (x-1)^2 + 2 = \\mathbf{x^2 - 2x + 3}$." },
+            { teks: "Titik $P(x_{0},y_{0})$ dan titik $Q$ adalah dua titik yang terletak simetris pada parabola $y = a\\left(x + \\frac{b}{2a}\\right)^2 - \\frac{D}{4a}$. Absis titik $Q$ adalah $\\dots$", opsi: ["A. $2x_{0} - \\frac{b}{a}$", "B. $\\frac{b}{-a} + x_0$", "C. $-\\frac{b}{a} - x_{0}$", "D. $x_{0} - \\frac{b}{a}$", "E. $-\\frac{2b}{a} - x_{0}$"], kunci: 2, pembahasan: "$x_s = -\\dfrac{b}{2a}$.<br>$x_Q = 2x_s - x_0 = -\\dfrac{b}{a} - x_0 = \\mathbf{-\\dfrac{b}{a} - x_0}$." },
+            { teks: "Jika grafik fungsi $f$ memotong sumbu X di titik $A(a,0)$ dan $B(a+6,0)$, maka koordinat titik puncak grafik fungsi $f$ yang mungkin adalah $\\dots$", opsi: ["A. $(a+2,3)$", "B. $(a+3,5)$", "C. $(a+4,5)$", "D. $(a+3,4)$", "E. $(a+1,2)$"], kunci: 1, pembahasan: "$x_p = \\dfrac{a + (a+6)}{2} = a + 3$.<br>Jawaban: <strong>$(a+3, 5)$</strong>." },
+            { teks: "Jika grafik fungsi $y = x^2 + ax + b$ mempunyai titik puncak $(1, 2)$, maka nilai $a$ dan $b$ adalah $\\dots$", opsi: ["A. $a = 1, b = 3$", "B. $a = -1, b = -3$", "C. $a = -2, b = 3$", "D. $a = 0{,}5,\\; b = 1{,}5$", "E. $a = 0{,}5,\\; b = -1{,}5$"], kunci: 2, pembahasan: "$a = -2$, $1 + (-2) + b = 2 \\implies b = 3$.<br>Jadi <strong>$a = -2,\\; b = 3$</strong>." },
+            { teks: "Suatu fungsi kuadrat $f(x)$ mempunyai nilai maksimum $5$ untuk $x = 2$, sedangkan $f(4) = 3$. Fungsi kuadrat tersebut adalah $\\dots$", opsi: ["A. $f(x) = -\\frac{1}{2}x^2 + 2x + 3$", "B. $f(x) = -\\frac{1}{2}x^2 - 2x + 3$", "C. $f(x) = -\\frac{1}{2}x^2 + 2x - 3$", "D. $f(x) = -2x^2 + 2x + 3$", "E. $f(x) = -2x^2 + 8x - 3$"], kunci: 0, pembahasan: "$f(x) = a(x-2)^2 + 5$.<br>$f(4) = 3 \\implies a = -\\dfrac{1}{2}$.<br>$f(x) = \\mathbf{-\\dfrac{1}{2}x^2 + 2x + 3}$." },
+            { teks: "Jika fungsi kuadrat $f$ memiliki sifat-sifat: $f(x) \\geq 0$ untuk semua bilangan real $x$, $f(1) = 0$, dan $f(2) = 2$, maka nilai $f(0) + f(4)$ adalah $\\dots$", opsi: ["A. $25$", "B. $20$", "C. $12$", "D. $10$", "E. $5$"], kunci: 1, pembahasan: "$f(x) = a(x-1)^2$. $f(2) = 2 \\implies a = 2$.<br>$f(0) + f(4) = 2 + 18 = \\mathbf{20}$." },
+            { teks: "Jika grafik fungsi kuadrat $f(x) = ax^2 + bx - c$ mempunyai titik puncak $(1, -4)$ dan memotong sumbu X negatif, maka pernyataan yang benar adalah $\\dots$", opsi: ["A. $a > 0, b > 0,$ dan $c > 0$", "B. $a < 0, b > 0,$ dan $c > 0$", "C. $a > 0, b < 0,$ dan $c > 0$", "D. $a > 0, b < 0,$ dan $c < 0$", "E. $a > 0, b > 0,$ dan $c < 0$"], kunci: 2, pembahasan: "$b = -2a$, $c = 4 - a$.<br>$a > 0 \\implies b < 0$, $c > 0$.<br>Jadi <strong>$a > 0,\\; b < 0,\\; c > 0$</strong>." },
+            { teks: "Diketahui $f(x) = (x - a)(x - b)$ dengan $a, b,$ dan $x$ bilangan real dan $a < b$. Pernyataan berikut ini yang benar adalah $\\dots$", opsi: ["A. Jika $ab = 0$, maka $f(x) = 0$ untuk setiap $x$", "B. Jika $x < a$, maka $f(x) < 0$", "C. Jika $a < x < b$, maka $f(x) > 0$", "D. Jika $a < x < b$, maka $f(x) < 0$", "E. Jika $x < b$, maka $f(x) > 0$"], kunci: 3, pembahasan: "$f(x) = (x-a)(x-b)$ terbuka ke atas.<br>Untuk $a < x < b$: $(x-a) > 0$ dan $(x-b) < 0 \\implies f(x) < 0$.<br>Jawaban: <strong>D</strong>." },
+            { teks: "Grafik fungsi $y = ax^2 + bx - 1$ memotong sumbu X di titik-titik $\\left(\\frac{1}{2}, 0\\right)$ dan $(1, 0)$. Fungsi ini mempunyai nilai ekstrem $\\dots$", opsi: ["A. Maksimum $\\frac{3}{8}$", "B. Minimum $-\\frac{3}{8}$", "C. Maksimum $\\frac{1}{8}$", "D. Minimum $-\\frac{1}{8}$", "E. Maksimum $\\frac{5}{8}$"], kunci: 4, pembahasan: "$a = -2$. $y = -2x^2 + 3x - 1$.<br>$x_p = \\dfrac{3}{4}$, $y_p = \\dfrac{5}{8}$.<br><strong>Maksimum $\\dfrac{5}{8}$</strong>." },
+            { teks: "Fungsi kuadrat $f(x) = ax^2 - (2a - 4)x + (a + 4)$ selalu bernilai positif untuk nilai $a$ yang memenuhi $\\dots$", opsi: ["A. $a \\geq 2$", "B. $a > 2$", "C. $a \\geq \\frac{1}{2}$", "D. $a > \\frac{1}{2}$", "E. $a > 0$"], kunci: 3, pembahasan: "$a > 0$ dan $D < 0$.<br>$D = -32a + 16 < 0 \\implies a > \\dfrac{1}{2}$.<br>Irisan: <strong>$a > \\dfrac{1}{2}$</strong>." },
+            { teks: "Interval nilai $p$ yang menyebabkan fungsi kuadrat $f(x) = px^2 - (2p + 3)x + p + 2$ definit negatif adalah $\\dots$", opsi: ["A. $p < 0$", "B. $-\\frac{9}{4} < p < 0$", "C. $p < -\\frac{9}{4}$", "D. $0 < p < \\frac{9}{4}$", "E. $-\\frac{5}{2} < p < 0$"], kunci: 2, pembahasan: "$p < 0$ dan $D < 0$.<br>$D = 4p + 9 < 0 \\implies p < -\\dfrac{9}{4}$.<br>Irisan: <strong>$p < -\\dfrac{9}{4}$</strong>." },
+            { teks: "Untuk $0 < a < 10$, fungsi kuadrat $f(x) = ax^2 + 2ax + 10$ memenuhi sifat $\\dots$", opsi: ["A. Selalu negatif", "B. Selalu positif", "C. Hanya positif di setiap $x$, dengan $0 < x < 10$", "D. Hanya negatif di setiap $x$, dengan $0 < x < 10$", "E. Hanya positif di setiap $x$, dengan $x < 0$ atau $x > 10$"], kunci: 1, pembahasan: "$a > 0$, $D = 4a(a - 10) < 0$.<br>Jadi <strong>selalu positif</strong>." },
+            { teks: "Grafik fungsi $f(x) = x^2 - 6x + 7$ dapat diperoleh dengan cara menggeser grafik fungsi $f(x) = x^2$ ke arah $\\dots$", opsi: ["A. Kanan sumbu X sejauh 2 satuan dan ke arah bawah sumbu Y sejauh 3 satuan", "B. Kiri sumbu X sejauh 3 satuan dan ke arah atas sumbu Y sejauh 2 satuan", "C. Kanan sumbu X sejauh 3 satuan dan ke arah bawah sumbu Y sejauh 2 satuan", "D. Kanan sumbu X sejauh 6 satuan dan ke arah bawah sumbu Y sejauh 7 satuan", "E. Kiri sumbu X sejauh 2 satuan dan ke arah atas sumbu Y sejauh 3 satuan"], kunci: 2, pembahasan: "$f(x) = (x-3)^2 - 2$. Puncak $(3, -2)$.<br>Geser <strong>kanan 3 satuan</strong>, <strong>bawah 2 satuan</strong>." },
+            { teks: "Jika $f$ adalah fungsi kuadrat yang grafiknya melalui titik $(-1, 0), (2, 0),$ dan $(0, 2)$, maka nilai $f(7)$ adalah $\\dots$", opsi: ["A. $-8$", "B. $-16$", "C. $-24$", "D. $-32$", "E. $-40$"], kunci: 4, pembahasan: "$f(x) = a(x+1)(x-2)$. $f(0) = 2 \\implies a = -1$.<br>$f(7) = -49 + 7 + 2 = \\mathbf{-40}$." },
+            { teks: "Fungsi kuadrat yang grafiknya melalui titik $(-1, 3)$ dan titik terendahnya sama dengan puncak dari grafik $f(x) = x^2 + 4x + 3$ adalah $\\dots$", opsi: ["A. $y = 4x^2 + x + 3$", "B. $y = x^2 - 3x - 1$", "C. $y = 4x^2 + 16x + 15$", "D. $y = 4x^2 + 15x + 16$", "E. $y = x^2 + 16x + 18$"], kunci: 2, pembahasan: "Puncak $(-2, -1)$. $y = a(x+2)^2 - 1$.<br>$a = 4$. $y = \\mathbf{4x^2 + 16x + 15}$." },
+            { teks: "Jika $2a + 1 < 0$ dan grafik $y = x^2 - 4ax + a$ bersinggungan dengan grafik $y = 2x^2 + 2x$, maka nilai dari $a^2 + 1 = \\dots$", opsi: ["A. $\\frac{19}{16}$", "B. $\\frac{5}{4}$", "C. $2$", "D. $5$", "E. $17$"], kunci: 2, pembahasan: "$a < -\\dfrac{1}{2}$. $D = 0 \\implies 4a^2 + 5a + 1 = 0$.<br>$a = -1$. $a^2 + 1 = \\mathbf{2}$." },
+            { teks: "Jika grafik fungsi kuadrat $f(x) = (2 - a)x^2 + (a + \\sqrt{2})x + a + \\sqrt{2}$ selalu berada di atas sumbu X untuk interval $m < a < n$, nilai dari $m - 5n = \\dots$", opsi: ["A. $-8$", "B. $-6$", "C. $-4$", "D. $0$", "E. $2$"], kunci: 0, pembahasan: "$a < 2$ dan $D < 0$.<br>$D = (a+\\sqrt{2})(5a + \\sqrt{2} - 8)$.<br>Hasil: $m - 5n = \\mathbf{-8}$." },
+            { teks: "Diketahui fungsi kuadrat $f(x) = 2x^{2} - 7x - 5$ serta titik $A(2,-11), B(-1,0),$ dan $C(-4,55)$. Titik yang dilalui grafik fungsi $f(x)$ adalah $\\dots$", opsi: ["A. titik A, B, dan C", "B. titik A dan B", "C. titik A dan C", "D. titik A saja", "E. titik C saja"], kunci: 2, pembahasan: "$f(2) = -11$ ✓, $f(-1) = 4 \\neq 0$ ✗, $f(-4) = 55$ ✓.<br>Jawaban: <strong>titik A dan C</strong>." },
+            { teks: "Jika grafik $f(x) = ax^{2} + (2a+6)x + 2a - 2$ menyinggung sumbu X, maka koordinat titik balik maksimumnya adalah $\\dots$", opsi: ["A. $(-3,0)$", "B. $(-2,0)$", "C. $(2,0)$", "D. $(3,0)$", "E. $(5,0)$"], kunci: 2, pembahasan: "$D = 0 \\implies a = 9$ atau $a = -1$.<br>Maksimum: $a = -1$. $f(x) = -(x-2)^2$.<br>Titik balik: $\\mathbf{(2, 0)}$." },
+            { teks: "Grafik parabola yang melalui titik $(0,0)$ mempunyai sumbu simetri $x = 4$ dan puncak parabola terletak pada garis $x - y + 4 = 0$. Persamaan parabola tersebut adalah $\\dots$", opsi: ["A. $y = -\\frac{1}{4}x^{2} + 2x$", "B. $y = \\frac{1}{4}x^{2} - 2x$", "C. $y = -\\frac{1}{4}x^{2} - 2x$", "D. $y = \\frac{1}{2}x^{2} + 4x$", "E. $y = -\\frac{1}{2}x^{2} + 4x$"], kunci: 4, pembahasan: "$c = 0$, $b = -8a$, $y_p = 8$.<br>$-16a = 8 \\implies a = -\\dfrac{1}{2}$, $b = 4$.<br>$\\mathbf{y = -\\dfrac{1}{2}x^2 + 4x}$." },
+            { teks: "Jika parabola $y = (n-1)x^{2} - (n+1)x + 3 - 2n$ untuk $n \\ne 0, n \\ne 1,$ dan $n$ bilangan real selalu melalui dua titik tertentu, yaitu $(a, b)$ dan $(p,q)$, maka nilai dari $a + b + p + q = \\dots$", opsi: ["A. $-1$", "B. $0$", "C. $1$", "D. $2$", "E. $3$"], kunci: 2, pembahasan: "$x^2 - x - 2 = 0 \\implies x = 2$ atau $x = -1$.<br>$(2, -3)$ dan $(-1, 3)$.<br>$a + b + p + q = \\mathbf{1}$." },
+            { teks: "Pembuat nol dari fungsi kuadrat $f(x) = x^2 + 6x + 5$ adalah $\\dots$", opsi: ["A. $x = -1$ atau $x = -5$", "B. $x = 1$ atau $x = 5$", "C. $x = -1$ atau $x = 5$", "D. $x = 1$ atau $x = -5$", "E. $x = 2$ atau $x = 3$"], kunci: 0, pembahasan: "$(x+1)(x+5) = 0$.<br>$x = -1$ atau $x = -5$." }
+        ];
+
+        const hurufOpsi = ['A', 'B', 'C', 'D', 'E'];
+        const containerSoal = document.getElementById('container-soal');
+
+        // Render soal
+        daftarSoal.forEach((soal, idx) => {
+            const nomor = idx + 1;
+            const opsiHtml = soal.opsi.map((opsi, oIdx) => `
+                <div class="option-item" id="opt-${idx}-${oIdx}" onclick="pilihJawaban(${idx}, ${oIdx})">
+                    <input type="radio" id="soal-${idx}-${oIdx}" name="soal_${idx}" value="${oIdx}">
+                    <span><strong>${hurufOpsi[oIdx]}.</strong> ${opsi}</span>
+                </div>
+            `).join('');
+
+            const card = document.createElement('div');
+            card.className = 'soal-card';
+            card.id = `soal-card-${idx}`;
+            card.innerHTML = `
+                <div id="status-soal-${idx}" class="hidden"></div>
+                <p class="soal-text">
+                    <span class="soal-number">${nomor}</span>
+                    ${soal.teks}
+                </p>
+                <div class="options-grid">${opsiHtml}</div>
+                <div id="pembahasan-${idx}" class="hidden"></div>
+            `;
+            containerSoal.appendChild(card);
+        });
+
+        function pilihJawaban(idxSoal, idxOpsi) {
+            if (window.__terkunci) return;
+            for (let i = 0; i < 5; i++) {
+                const optEl = document.getElementById(`opt-${idxSoal}-${i}`);
+                if (optEl) optEl.classList.remove('selected');
+            }
+            const selectedEl = document.getElementById(`opt-${idxSoal}-${idxOpsi}`);
+            if (selectedEl) selectedEl.classList.add('selected');
+            const radio = document.getElementById(`soal-${idxSoal}-${idxOpsi}`);
+            if (radio) radio.checked = true;
+            updateProgress();
+        }
+
+        function updateProgress() {
+            let terjawab = 0;
+            for (let i = 0; i < daftarSoal.length; i++) {
+                if (document.querySelector(`input[name="soal_${i}"]:checked`)) terjawab++;
+            }
+            document.getElementById('info-terjawab').textContent = `${terjawab} dari ${daftarSoal.length} soal terjawab`;
+        }
+
+        function cekJawaban() {
+            if (window.__terkunci) {
+                alert('Jawaban sudah dicek. Klik "Ulangi Soal" untuk mencoba lagi.');
+                return;
+            }
+            let benar = 0, salah = 0, kosong = 0;
+            document.querySelectorAll('.option-item').forEach(opt => {
+                opt.classList.remove('correct', 'incorrect', 'is-key', 'selected');
+            });
+            daftarSoal.forEach((soal, idx) => {
+                const selected = document.querySelector(`input[name="soal_${idx}"]:checked`);
+                const statusDiv = document.getElementById(`status-soal-${idx}`);
+                const pembahasanDiv = document.getElementById(`pembahasan-${idx}`);
+                statusDiv.classList.remove('hidden');
+                pembahasanDiv.classList.remove('hidden');
+                if (!selected) {
+                    kosong++;
+                    statusDiv.innerHTML = `<div class="status-badge kosong">⚠️ Belum Dijawab</div>`;
+                    const keyOpt = document.getElementById(`opt-${idx}-${soal.kunci}`);
+                    if (keyOpt) keyOpt.classList.add('is-key');
+                    pembahasanDiv.innerHTML = `<div class="pembahasan-box"><strong>🔑 Kunci Jawaban: ${hurufOpsi[soal.kunci]}</strong><br><br><strong>📖 Pembahasan:</strong><br>${soal.pembahasan}</div>`;
+                } else {
+                    const jawabanUser = parseInt(selected.value);
+                    const userOpt = document.getElementById(`opt-${idx}-${jawabanUser}`);
+                    if (jawabanUser === soal.kunci) {
+                        benar++;
+                        if (userOpt) userOpt.classList.add('correct');
+                        if (userOpt) userOpt.classList.remove('selected');
+                        statusDiv.innerHTML = `<div class="status-badge benar">✅ Jawaban Anda Benar!</div>`;
+                        pembahasanDiv.innerHTML = `<div class="pembahasan-box"><strong>🎉 Jawaban Anda (${hurufOpsi[jawabanUser]}) sudah benar!</strong><br><br><strong>📖 Pembahasan:</strong><br>${soal.pembahasan}</div>`;
+                    } else {
+                        salah++;
+                        if (userOpt) userOpt.classList.add('incorrect');
+                        if (userOpt) userOpt.classList.remove('selected');
+                        const keyOpt = document.getElementById(`opt-${idx}-${soal.kunci}`);
+                        if (keyOpt) keyOpt.classList.add('is-key');
+                        statusDiv.innerHTML = `<div class="status-badge salah">❌ Jawaban Anda Salah — Kunci: ${hurufOpsi[soal.kunci]}</div>`;
+                        pembahasanDiv.innerHTML = `<div class="pembahasan-box"><strong>❌ Jawaban Anda: ${hurufOpsi[jawabanUser]} (Salah)</strong><br><strong>🔑 Kunci Jawaban: ${hurufOpsi[soal.kunci]} (Benar)</strong><br><br><strong>📖 Pembahasan:</strong><br>${soal.pembahasan}</div>`;
+                    }
+                }
+            });
+            const total = daftarSoal.length;
+            const persentase = Math.round((benar / total) * 100);
+            let emoji = '🎉', pesan = 'Luar biasa!';
+            if (persentase < 60) { emoji = '💪'; pesan = 'Terus berlatih!'; }
+            else if (persentase < 80) { emoji = '👍'; pesan = 'Cukup baik!'; }
+            else if (persentase < 100) { emoji = '🌟'; pesan = 'Hebat!'; }
+            const resultContainer = document.getElementById('result-container');
+            resultContainer.classList.remove('hidden');
+            resultContainer.innerHTML = `
+                <div class="score-card">
+                    <div class="score-circle">
+                        <div>
+                            <div class="score-value">${persentase}</div>
+                            <div class="score-label">Nilai</div>
+                        </div>
+                    </div>
+                    <div style="font-size: 1.75rem; margin-bottom: 0.5rem;">${emoji} ${pesan}</div>
+                    <div style="opacity: 0.9; margin-bottom: 1rem;">Hasil Penilaian Anda</div>
+                    <div class="score-stats">
+                        <div class="stat-box"><div class="stat-label">Benar</div><div class="stat-value">${benar}</div></div>
+                        <div class="stat-box"><div class="stat-label">Salah</div><div class="stat-value">${salah}</div></div>
+                        <div class="stat-box"><div class="stat-label">Kosong</div><div class="stat-value">${kosong}</div></div>
+                        <div class="stat-box"><div class="stat-label">Total Soal</div><div class="stat-value">${total}</div></div>
+                    </div>
+                    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.75rem; opacity: 0.8;">
+                        🟢 Hijau = Jawaban benar &nbsp;|&nbsp; 🔴 Merah = Jawaban salah &nbsp;|&nbsp; 🏷️ Tag "Kunci Jawaban" = Jawaban benar
+                    </div>
+                </div>
+            `;
+            window.__terkunci = true;
+            document.getElementById('btn-submit').disabled = true;
+            resultContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            if (window.MathJax && window.MathJax.typesetPromise) window.MathJax.typesetPromise();
+        }
+
+        function resetJawaban() {
+            if (window.__terkunci) {
+                // langsung reset
+            } else {
+                let terjawab = 0;
+                for (let i = 0; i < daftarSoal.length; i++) {
+                    if (document.querySelector(`input[name="soal_${i}"]:checked`)) terjawab++;
+                }
+                if (terjawab > 0 && !confirm('Yakin ingin menghapus semua jawaban Anda dan mengulang soal?')) return;
+            }
+            document.querySelectorAll('input[type="radio"]').forEach(r => { r.checked = false; });
+            document.querySelectorAll('.option-item').forEach(opt => {
+                opt.classList.remove('correct', 'incorrect', 'is-key', 'selected');
+            });
+            document.querySelectorAll('[id^="status-soal-"]').forEach(div => {
+                div.classList.add('hidden');
+                div.innerHTML = '';
+            });
+            document.querySelectorAll('[id^="pembahasan-"]').forEach(div => {
+                div.classList.add('hidden');
+                div.innerHTML = '';
+            });
+            window.__terkunci = false;
+            document.getElementById('btn-submit').disabled = false;
+            document.getElementById('result-container').classList.add('hidden');
+            document.getElementById('result-container').innerHTML = '';
+            updateProgress();
+        }
+
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.main-header');
+            if (window.scrollY > 100) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+    </script>
+</body>
+</html>

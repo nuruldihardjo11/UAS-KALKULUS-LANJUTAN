@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Fungsi Kuadrat</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            options: { enableMenu: false },
+            chtml: { scale: 0.95, mtextInheritFont: true, matchFontHeight: false }
+        };
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <button class="mobile-menu-btn" onclick="document.getElementById('desktop-nav').classList.toggle('open')">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+            <nav class="desktop-nav" id="desktop-nav">
+                <a href="index.html"> Beranda</a>
+                <a href="materi.html" class="active"> Materi</a>
+                <a href="rumus.html"> Rumus</a>
+                <a href="soal.html"> Latihan Soal</a>
+                <a href="referensi.html"> Referensi</a>
+                <a href="profil.html">👤 Profil</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-content">
+        <div class="page-container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1> Materi Fungsi Kuadrat</h1>
+                <p>Panduan lengkap konsep dasar fungsi kuadrat, karakteristik grafik, dan cara menyusun persamaannya.</p>
+            </div>
+
+            <!-- Daftar Isi -->
+            <div class="toc-sidebar">
+                <div class="toc-title"> Daftar Isi</div>
+                <ul class="toc-list">
+                    <li><a href="#m1"><span class="toc-num">1</span> Bentuk Umum Fungsi Kuadrat</a></li>
+                    <li><a href="#m2"><span class="toc-num">2</span> Karakteristik Grafik Parabola</a></li>
+                    <li><a href="#m3"><span class="toc-num">3</span> Titik Puncak & Sumbu Simetri</a></li>
+                    <li><a href="#m4"><span class="toc-num">4</span> Menyusun Persamaan Fungsi Kuadrat</a></li>
+                </ul>
+            </div>
+
+            <!-- Section 1: Bentuk Umum -->
+            <section class="content-section" id="m1">
+                <h2 class="section-title">
+                    <span class="section-badge">1</span>
+                    Bentuk Umum Fungsi Kuadrat
+                </h2>
+                <p>Fungsi kuadrat adalah fungsi yang pangkat tertinggi dari variabelnya adalah dua. Bentuk umumnya:</p>
+                <div class="gray-subtle" style="padding: 1rem; border-radius: 8px; text-align: center; font-family: monospace; font-size: 1.1rem; margin: 1rem 0;">
+                    $$f(x) = ax^2 + bx + c \quad \text{atau} \quad y = ax^2 + bx + c$$
+                    <div style="font-size: 0.875rem; opacity: 0.8; margin-top: 0.5rem;">
+                        Dengan syarat $a, b, c \in \mathbb{R}$ dan $a \neq 0$.
+                    </div>
+                </div>
+                <p><strong>Keterangan:</strong></p>
+                <ul class="content-list">
+                    <li>$a$ = koefisien dari $x^2$ (menentukan arah buka parabola)</li>
+                    <li>$b$ = koefisien dari $x$ (berpengaruh pada posisi sumbu simetri)</li>
+                    <li>$c$ = konstanta (titik potong dengan sumbu Y)</li>
+                </ul>
+            </section>
+
+            <!-- Section 2: Karakteristik Grafik -->
+            <section class="content-section" id="m2">
+                <h2 class="section-title">
+                    <span class="section-badge">2</span>
+                    Karakteristik Grafik Parabola
+                </h2>
+
+                <h3 class="sub-title"> Koefisien $a$ (Arah Parabola)</h3>
+                <ul class="content-list">
+                    <li>Jika $a > 0$: Parabola terbuka ke <strong>atas</strong> (memiliki nilai <strong>minimum</strong>).</li>
+                    <li>Jika $a < 0$: Parabola terbuka ke <strong>bawah</strong> (memiliki nilai <strong>maksimum</strong>).</li>
+                </ul>
+
+                <h3 class="sub-title"> Diskriminan $D = b^2 - 4ac$</h3>
+                <p>Diskriminan menentukan hubungan grafik dengan sumbu X:</p>
+                <ul class="content-list">
+                    <li>$D > 0$: Grafik memotong sumbu X di <strong>dua titik berbeda</strong>.</li>
+                    <li>$D = 0$: Grafik <strong>menyinggung</strong> sumbu X (satu titik potong).</li>
+                    <li>$D < 0$: Grafik <strong>tidak memotong</strong> sumbu X.</li>
+                </ul>
+
+                <div class="tip-box">
+                    <strong> Trik Definit (Selalu Positif/Negatif):</strong>
+                    <p style="font-size: 0.875rem; margin: 0.5rem 0 0 0;">
+                        <strong>Definit Positif</strong> (Grafik selalu di atas sumbu X): Syaratnya $a > 0$ dan $D < 0$.<br>
+                        <strong>Definit Negatif</strong> (Grafik selalu di bawah sumbu X): Syaratnya $a < 0$ dan $D < 0$.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Section 3: Titik Puncak -->
+            <section class="content-section" id="m3">
+                <h2 class="section-title">
+                    <span class="section-badge">3</span>
+                    Titik Puncak, Sumbu Simetri, dan Nilai Ekstrem
+                </h2>
+                <p>Setiap parabola memiliki titik balik atau titik puncak $P(x_p, y_p)$:</p>
+
+                <div class="formula-grid">
+                    <div class="formula-box">
+                        <span class="label">Sumbu Simetri ($x_p$)</span>
+                        <div style="font-size: 1.25rem;">$$x_p = -\frac{b}{2a}$$</div>
+                    </div>
+                    <div class="formula-box">
+                        <span class="label">Nilai Ekstrem ($y_p$)</span>
+                        <div style="font-size: 1.25rem;">$$y_p = -\frac{D}{4a}$$</div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 1rem;"><strong>Titik Puncak:</strong> $P\left(-\dfrac{b}{2a}, -\dfrac{D}{4a}\right)$</p>
+            </section>
+
+            <!-- Section 4: Menyusun PK -->
+            <section class="content-section" id="m4">
+                <h2 class="section-title">
+                    <span class="section-badge">4</span>
+                    Menyusun Persamaan Fungsi Kuadrat
+                </h2>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Kondisi</th>
+                            <th>Rumus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Memotong sumbu X di $(x_1, 0)$ dan $(x_2, 0)$</td>
+                            <td class="formula">$y = a(x - x_1)(x - x_2)$</td>
+                        </tr>
+                        <tr>
+                            <td>Memiliki Titik Puncak $(x_p, y_p)$</td>
+                            <td class="formula">$y = a(x - x_p)^2 + y_p$</td>
+                        </tr>
+                        <tr>
+                            <td>Melalui tiga titik sembarang</td>
+                            <td>Substitusi ke $y = ax^2 + bx + c$ (SPLTV)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Navigasi Halaman -->
+            <div class="page-nav">
+                <a href="index.html" class="nav-btn">← Beranda</a>
+                <a href="rumus.html" class="nav-btn primary">Rumus & Pengayaan →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p>&copy; Belajar Fungsi Kuadrat.</p>
+        <p class="footer-credit">Nurul Rahma A. Diharjo · 202557201030 · Sistem Informasi · Fakultas Teknik · Universitas Musamus Merauke 2026</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.main-header');
+            if (window.scrollY > 100) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+    </script>
+</body>
+</html>

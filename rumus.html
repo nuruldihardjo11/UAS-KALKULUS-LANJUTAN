@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rumus & Pengayaan - Fungsi Kuadrat</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            options: { enableMenu: false },
+            chtml: { scale: 0.95, mtextInheritFont: true, matchFontHeight: false }
+        };
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <h1 class="header-title">📐 Fungsi Kuadrat</h1>
+            <button class="mobile-menu-btn" onclick="document.getElementById('desktop-nav').classList.toggle('open')">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+            <nav class="desktop-nav" id="desktop-nav">
+                <a href="index.html"> Beranda</a>
+                <a href="materi.html"> Materi</a>
+                <a href="rumus.html" class="active"> Rumus</a>
+                <a href="soal.html"> Latihan Soal</a>
+                <a href="referensi.html"> Referensi</a>
+                <a href="profil.html">👤 Profil</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-content">
+        <div class="page-container">
+            <div class="page-header">
+                <h1> Rumus & Pengayaan</h1>
+                <p>Rumus ABC, Teorema Vieta, Identitas Aljabar, dan contoh penerapannya dalam menyelesaikan soal.</p>
+            </div>
+
+            <!-- Daftar Isi -->
+            <div class="toc-sidebar">
+                <div class="toc-title"> Daftar Isi</div>
+                <ul class="toc-list">
+                    <li><a href="#r1"><span class="toc-num">1</span> Rumus ABC</a></li>
+                    <li><a href="#r2"><span class="toc-num">2</span> Teorema Vieta</a></li>
+                    <li><a href="#r3"><span class="toc-num">3</span> Identitas Aljabar Akar-Akar</a></li>
+                    <li><a href="#r4"><span class="toc-num">4</span> Syarat-Syarat Berdasarkan Akar</a></li>
+                    <li><a href="#r5"><span class="toc-num">5</span> Contoh Penerapan</a></li>
+                </ul>
+            </div>
+
+            <!-- Rumus ABC -->
+            <section class="content-section" id="r1">
+                <h2 class="section-title">
+                    <span class="section-badge">1</span>
+                    Rumus ABC
+                </h2>
+                <p>Untuk persamaan $ax^2 + bx + c = 0$ dengan akar-akar $x_1$ dan $x_2$:</p>
+                <div class="gray-subtle" style="padding: 1rem; border-radius: 8px; text-align: center; font-family: monospace; font-size: 1.1rem; margin: 1rem 0;">
+                    $$x_{1,2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} = \frac{-b \pm \sqrt{D}}{2a}$$
+                </div>
+            </section>
+
+            <!-- Teorema Vieta -->
+            <section class="content-section" id="r2">
+                <h2 class="section-title">
+                    <span class="section-badge">2</span>
+                     Teorema Vieta
+                </h2>
+                <p>Teorema Vieta menyatakan hubungan langsung antara <strong>koefisien</strong> persamaan kuadrat dengan <strong>jumlah</strong> dan <strong>hasil kali</strong> akar-akarnya:</p>
+
+                <div class="formula-grid">
+                    <div class="formula-box">
+                        <span class="label">Jumlah Akar</span>
+                        <div style="font-size: 1.25rem;">$$x_1 + x_2 = -\frac{b}{a}$$</div>
+                    </div>
+                    <div class="formula-box">
+                        <span class="label">Hasil Kali Akar</span>
+                        <div style="font-size: 1.25rem;">$$x_1 \cdot x_2 = \frac{c}{a}$$</div>
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <strong> Selisih Akar-Akar:</strong>
+                    <div style="text-align: center; font-family: monospace; font-size: 1.1rem; margin-top: 0.5rem;">
+                        $$|x_1 - x_2| = \frac{\sqrt{D}}{|a|}$$
+                    </div>
+                </div>
+            </section>
+
+            <!-- Identitas Aljabar -->
+            <section class="content-section" id="r3">
+                <h2 class="section-title">
+                    <span class="section-badge">3</span>
+                     Identitas Aljabar Akar-Akar
+                </h2>
+                <p>Bentuk-bentuk aljabar yang sering muncul dan dapat diselesaikan menggunakan Teorema Vieta:</p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 40%;">Bentuk</th>
+                            <th>Identitas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>$x_1^2 + x_2^2$</strong></td>
+                            <td class="formula">$(x_1 + x_2)^2 - 2x_1 x_2$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>$x_1^3 + x_2^3$</strong></td>
+                            <td class="formula">$(x_1 + x_2)^3 - 3x_1 x_2(x_1 + x_2)$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>$(x_1 - x_2)^2$</strong></td>
+                            <td class="formula">$(x_1 + x_2)^2 - 4x_1 x_2$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>$\dfrac{1}{x_1} + \dfrac{1}{x_2}$</strong></td>
+                            <td class="formula">$\dfrac{x_1 + x_2}{x_1 \cdot x_2}$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>$\dfrac{1}{x_1^2} + \dfrac{1}{x_2^2}$</strong></td>
+                            <td class="formula">$\dfrac{x_1^2 + x_2^2}{(x_1 \cdot x_2)^2}$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>$x_1^2 - x_2^2$</strong></td>
+                            <td class="formula">$(x_1 + x_2)(x_1 - x_2)$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Syarat-syarat -->
+            <section class="content-section" id="r4">
+                <h2 class="section-title">
+                    <span class="section-badge">4</span>
+                     Syarat-Syarat Berdasarkan Akar
+                </h2>
+
+                <div class="formula-grid">
+                    <div class="formula-card">
+                        <strong> Kedua akar bernilai positif</strong>
+                        <div style="font-size: 0.875rem; margin-top: 0.5rem;">
+                            $x_1 + x_2 > 0$, $x_1 x_2 > 0$, $D \geq 0$
+                        </div>
+                    </div>
+                    <div class="formula-card">
+                        <strong> Kedua akar bernilai negatif</strong>
+                        <div style="font-size: 0.875rem; margin-top: 0.5rem;">
+                            $x_1 + x_2 < 0$, $x_1 x_2 > 0$, $D \geq 0$
+                        </div>
+                    </div>
+                    <div class="formula-card">
+                        <strong> Akar berlawanan tanda</strong>
+                        <div style="font-size: 0.875rem; margin-top: 0.5rem;">
+                            $x_1 x_2 < 0$, $D > 0$
+                        </div>
+                    </div>
+                    <div class="formula-card">
+                        <strong> Akar sama (kembar)</strong>
+                        <div style="font-size: 0.875rem; margin-top: 0.5rem;">
+                            $D = 0$, $x_1 = x_2 = -\dfrac{b}{2a}$
+                        </div>
+                    </div>
+                    <div class="formula-card">
+                        <strong> Akar berkebalikan</strong>
+                        <div style="font-size: 0.875rem; margin-top: 0.5rem;">
+                            $x_1 \cdot x_2 = 1 \implies c = a$
+                        </div>
+                    </div>
+                    <div class="formula-card">
+                        <strong> Akar saling berlawanan</strong>
+                        <div style="font-size: 0.875rem; margin-top: 0.5rem;">
+                            $x_1 + x_2 = 0 \implies b = 0$
+                        </div>
+                    </div>
+                    <div class="formula-card" style="grid-column: span 2;">
+                        <strong> Salah satu akar bernilai nol</strong>
+                        <div style="font-size: 0.875rem; margin-top: 0.5rem;">
+                            $x_1 \cdot x_2 = 0 \implies c = 0$
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contoh Penerapan -->
+            <section class="content-section" id="r5">
+                <h2 class="section-title">
+                    <span class="section-badge">5</span>
+                     Contoh Penerapan
+                </h2>
+
+                <!-- Contoh 1 -->
+                <div class="example-box">
+                    <div class="example-header">
+                        <span class="example-tag">CONTOH 1</span>
+                        <span class="example-title">Menghitung $x_1^2 + x_2^2$</span>
+                    </div>
+                    <p>Jika $x_1$ dan $x_2$ adalah akar-akar persamaan $x^2 - 5x + 6 = 0$, tentukan nilai $x_1^2 + x_2^2$.</p>
+
+                    <div class="step">
+                        <span class="step-num">1</span>
+                        <div class="step-content">
+                            <strong>Identifikasi koefisien:</strong><br>
+                            $a = 1,\; b = -5,\; c = 6$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">2</span>
+                        <div class="step-content">
+                            <strong>Gunakan Teorema Vieta:</strong>
+                            <span class="result-highlight">
+                                $x_1 + x_2 = -\dfrac{-5}{1} = 5$<br>
+                                $x_1 \cdot x_2 = \dfrac{6}{1} = 6$
+                            </span>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">3</span>
+                        <div class="step-content">
+                            <strong>Hitung menggunakan identitas aljabar:</strong>
+                            <span class="result-highlight">
+                                $x_1^2 + x_2^2 = (x_1 + x_2)^2 - 2x_1 x_2$<br>
+                                $= 5^2 - 2(6) = 25 - 12 = 13$
+                            </span>
+                            <span class="final-answer-box">
+                                Jadi, $\;x_1^2 + x_2^2 = \mathbf{13}$
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contoh 2 -->
+                <div class="example-box">
+                    <div class="example-header">
+                        <span class="example-tag">CONTOH 2</span>
+                        <span class="example-title">Menyusun PK baru dari akar-akar yang dimodifikasi</span>
+                    </div>
+                    <p>Akar-akar PK $x^2 - 3x + 5 = 0$ adalah $\alpha$ dan $\beta$. Susunlah PK baru yang akar-akarnya $(\alpha + 2)$ dan $(\beta + 2)$.</p>
+
+                    <div class="step">
+                        <span class="step-num">1</span>
+                        <div class="step-content">
+                            <strong>Dari PK lama (Teorema Vieta):</strong>
+                            <span class="result-highlight">
+                                $\alpha + \beta = 3$<br>
+                                $\alpha \cdot \beta = 5$
+                            </span>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">2</span>
+                        <div class="step-content">
+                            <strong>Jumlah akar baru:</strong>
+                            <span class="result-highlight">
+                                $(\alpha+2) + (\beta+2) = (\alpha+\beta) + 4 = 3 + 4 = 7$
+                            </span>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">3</span>
+                        <div class="step-content">
+                            <strong>Hasil kali akar baru:</strong>
+                            <span class="result-highlight">
+                                $(\alpha+2)(\beta+2) = \alpha\beta + 2(\alpha+\beta) + 4 = 5 + 6 + 4 = 15$
+                            </span>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">4</span>
+                        <div class="step-content">
+                            <strong>Susun PK baru:</strong>
+                            <span class="final-answer-box">
+                                Jadi, PK baru: $\;x^2 - 7x + 15 = 0$
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contoh 3 -->
+                <div class="example-box">
+                    <div class="example-header">
+                        <span class="example-tag">CONTOH 3</span>
+                        <span class="example-title">Menentukan parameter dengan syarat akar</span>
+                    </div>
+                    <p>Persamaan $x^2 + (m-2)x + (2m+1) = 0$ memiliki <strong>dua akar positif</strong>. Tentukan batasan nilai $m$.</p>
+
+                    <div class="step">
+                        <span class="step-num">1</span>
+                        <div class="step-content">
+                            <strong>Syarat 1 — Kedua akar harus real ($D \geq 0$):</strong>
+                            <div class="sub-step-container">
+                                <div class="sub-step">
+                                    <span class="sub-step-marker">a</span>
+                                    <span>Rumus diskriminan: $D = b^2 - 4ac \geq 0$</span>
+                                </div>
+                                <div class="sub-step">
+                                    <span class="sub-step-marker">b</span>
+                                    <span>Substitusi: $(m-2)^2 - 4(1)(2m+1) \geq 0$</span>
+                                </div>
+                                <div class="sub-step">
+                                    <span class="sub-step-marker">c</span>
+                                    <span>Jabarkan: $m^2 - 4m + 4 - 8m - 4 \geq 0$</span>
+                                </div>
+                                <div class="sub-step">
+                                    <span class="sub-step-marker">d</span>
+                                    <span>Sederhanakan: $m^2 - 12m \geq 0$</span>
+                                </div>
+                                <div class="sub-step">
+                                    <span class="sub-step-marker">e</span>
+                                    <span>Faktorkan: $m(m - 12) \geq 0$</span>
+                                </div>
+                                <div class="sub-step">
+                                    <span class="sub-step-marker">f</span>
+                                    <span><strong>Penyelesaian: $m \leq 0$ atau $m \geq 12$</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">2</span>
+                        <div class="step-content">
+                            <strong>Syarat 2 — Jumlah akar positif:</strong>
+                            <span class="result-highlight">
+                                $-(m-2) > 0 \implies m < 2$
+                            </span>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">3</span>
+                        <div class="step-content">
+                            <strong>Syarat 3 — Hasil kali akar positif:</strong>
+                            <span class="result-highlight">
+                                $2m + 1 > 0 \implies m > -\dfrac{1}{2}$
+                            </span>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">4</span>
+                        <div class="step-content">
+                            <strong>Irisan ketiga syarat:</strong>
+                            <span class="final-answer-box">
+                                Jadi, batasan nilai $m$ adalah $\;-\dfrac{1}{2} < m \leq 0$
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <strong> Tips Mengerjakan Soal Teorema Vieta:</strong>
+                    <ul class="content-list" style="margin-top: 0.5rem;">
+                        <li>Tulis selalu $x_1 + x_2$ dan $x_1 \cdot x_2$ terlebih dahulu.</li>
+                        <li>Gunakan identitas aljabar untuk mengubah bentuk yang ditanya.</li>
+                        <li>Jangan lupa memeriksa syarat $D \geq 0$ jika soal meminta akar-akar real.</li>
+                        <li>Untuk menyusun PK baru: $x^2 - (\text{jumlah akar baru})x + (\text{hasil kali akar baru}) = 0$.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Navigasi -->
+            <div class="page-nav">
+                <a href="materi.html" class="nav-btn">← Materi</a>
+                <a href="soal.html" class="nav-btn primary">Latihan Soal →</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; Belajar Fungsi Kuadrat.</p>
+        <p class="footer-credit">Nurul Rahma A. Diharjo · 202557201030 · Sistem Informasi · Fakultas Teknik · Universitas Musamus Merauke 2026</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.main-header');
+            if (window.scrollY > 100) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+    </script>
+</body>
+</html>
